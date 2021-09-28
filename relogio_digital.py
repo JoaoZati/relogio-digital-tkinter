@@ -17,13 +17,27 @@ class RelogioDigital:
         self.window.resizable(0, 0)
         self.window.config(bg=COR1)
 
-        self.tempo=datetime.now()
-        self.hora = self.tempo.strftime('%H:%M:%S')
-        self.dia_semana = self.tempo.strftime("%A")
-        self.dia = self.tempo.day
-        self.mes = self.tempo.strftime("%B")
-        self.ano = self.tempo.strftime("%y")
-        print(self.hora, self.dia_semana, self.dia, self.mes, self.ano)
+        self.label_1 = tk.Label(self.window, text="00:00:00", font=('Arial', 70),
+                                bg=COR1, fg=COR6)
+        self.label_1.grid(row=0, column=0, sticky='nw', padx=5)
+
+        self.label_2 = tk.Label(self.window, text="00:00:00", font=('Arial', 20),
+                                bg=COR1, fg=COR6)
+        self.label_2.grid(row=1, column=0, sticky='nw', padx=5)
+
+        self.relogio()
+
+    def relogio(self):
+        tempo = datetime.now()
+        hora = tempo.strftime('%H:%M:%S')
+        dia_semana = tempo.strftime("%A")
+        dia = tempo.day
+        mes = tempo.strftime("%B")
+        ano = tempo.strftime("%y")
+
+        self.label_1.config(text=hora)
+        self.label_2.config(text=f"{dia_semana} - {dia}/{mes}/{ano}")
+        self.label_1.after(200, self.relogio)
 
     def run(self):
         self.window.mainloop()
