@@ -1,4 +1,5 @@
 import tkinter as tk
+from datetime import datetime
 
 COR1 = "#3d3d3d"  # preta
 COR2 = "#fafcff"  # branca
@@ -15,6 +16,14 @@ class RelogioDigital:
         self.window.geometry("400x180")
         self.window.resizable(0, 0)
         self.window.config(bg=COR1)
+
+        self.tempo=datetime.now()
+        self.hora = self.tempo.strftime('%H:%M:%S')
+        self.dia_semana = self.tempo.strftime("%A")
+        self.dia = self.tempo.day
+        self.mes = self.tempo.strftime("%B")
+        self.ano = self.tempo.strftime("%y")
+        print(self.hora, self.dia_semana, self.dia, self.mes, self.ano)
 
     def run(self):
         self.window.mainloop()
